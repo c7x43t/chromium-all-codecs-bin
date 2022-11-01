@@ -1,10 +1,15 @@
 const downloadURLs = {
   // linux: 'https://github.com/talmobi/chrome-ubuntu-64/raw/master/chrome-linux-64.zip',
   // this is a version of default chromium as fallback
-  linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
-  mac: 'https://github.com/macchrome/macstable/releases/download/v70.0.3538.67-r587811-macOS/Chromium.70.0.3538.67.nosync.app.zip',
-  win32: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/Ungoogled-Chromium-79.0.3945.130-Polly.Win32.7z',
-  win64: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/ungoogled-chromium-79.0.3945.130-1_windows.7z'
+  // https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media
+  //linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
+  linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F1065920%2Fchrome-linux.zip?generation=1667312947566470&alt=media',
+  //mac: 'https://github.com/macchrome/macstable/releases/download/v70.0.3538.67-r587811-macOS/Chromium.70.0.3538.67.nosync.app.zip',
+  mac: 'https://github.com/macchrome/macstable/releases/download/v106.5249.061-M106.0.5249.61-r1036826-macOS/Chromium.app.ungoogled-106.0.5249.61.zip',
+  //win32: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/Ungoogled-Chromium-79.0.3945.130-Polly.Win32.7z',
+  win32: 'https://github.com/macchrome/winchrome/releases/download/v107.5304.88-M107.0.5304.88-r1047731-Win64/ungoogled-chromium-107.0.5304.88-1_Win64.7z',
+  //win64: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/ungoogled-chromium-79.0.3945.130-1_windows.7z',
+  win64: 'https://github.com/macchrome/winchrome/releases/download/v107.5304.88-M107.0.5304.88-r1047731-Win64/ungoogled-chromium-107.0.5304.88-1_Win64.7z'
 }
 
 const os = require( 'os' )
