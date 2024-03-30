@@ -30,18 +30,21 @@
     "email": "talmo.christian@gmail.com"
   },
   "dependencies": {
-    "command-exists": "~1.2.8",
+    "command-exists": "~1.2.9",
     "cross-unzip": "~0.2.1",
-    "extract-zip": "~1.6.7",
-    "make-dir": "~3.0.0",
+    "extract-zip": "~2.0.1",
+    "make-dir": "~4.0.0",
     "progress": "~2.0.3",
     "redstar": "0.0.2",
-    "rimraf": "~3.0.1",
+    "rimraf": "~5.0.5",
     "win-7zip": "~0.1.1"
   },
+  "resolutions": {
+    "yauzl": "^3.1.2"
+  },
   "devDependencies": {
-    "puppeteer-core": "~1.7.0",
+    "puppeteer-core": "~22.6.1",
     "tap-summary": "~4.0.0",
-    "tape": "~4.13.0"
+    "tape": "~5.7.5"
   }
 }
