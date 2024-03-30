@@ -1,12 +1,14 @@
 // const sevenBin = require('7zip-bin');
-const sevenBin = require('./7zip-bin');
+const fs = require('fs');
+const path = require('path');
+const sevenZipBinPath = path.join(__dirname, '7zip-bin');
+const sevenBin = require(sevenZipBinPath);
 const pathTo7zip = sevenBin.path7za;
 const Seven = require('node-7z');
 const axios = require('axios');
 const { default: axiosRetry } = require('axios-retry');
 const { exec } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+
 const client = axios.create();
 const ProgressBar = require('progress');
 console.log({ axiosRetry });
