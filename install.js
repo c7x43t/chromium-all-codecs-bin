@@ -7,6 +7,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const client = axios.create();
+const ProgressBar = require('progress');
 console.log({ axiosRetry });
 axiosRetry(client, { retries: 3 });
 const redstar = require('redstar');
@@ -98,13 +99,25 @@ async function main() {
                 // process.exit(1);
             }
             function onFinish(destinationPath) {
-                const sevenStream = Seven.extractFull(destinationPath, downloadDirectory, { $bin: pathTo7zip });
+                const sevenStream = Seven.extractFull(destinationPath, downloadDirectory, { $bin: pathTo7zip, $progress: true });
+                let progressBar;
+                sevenStream.on('progress', function (progress) {
+                    // Initialize the progress bar if it hasn't been already
+                    if (!progressBar) {
+                        progressBar = new ProgressBar('Extracting [:bar] :percent :etas', {
+                            complete: '=',
+                            incomplete: ' ',
+                            width: 20,
+                            total: 100 // Total is 100 since progress percent ranges from 0 to 100
+                        });
+                    }
+                    // Update the progress bar with the current progress
+                    progressBar.update(progress.percent / 100);
+                });
                 sevenStream.on('end', function (data) {
-                    if (/.tar.xz$/.test(destinationPath)) {
-                        console.log('U', destinationPath.slice(0, -3));
-                        onFinish(destinationPath.slice(0, -3));
-                        // const absExecPath = path.resolve(execPath);
-                        // fs.writeFileSync(path.join(__dirname, 'bin-path.txt'), absExecPath, 'utf8');
+                    let ending;
+                    if (!!(ending = /\.tar\.(xz|gz|bz2|lz|lzma|Z)$/.exec(destinationPath)?.[1])) {
+                        onFinish(destinationPath.slice(0, -(ending.length + 1)));
                     } else {
                         unzipSuccess();
                     }
@@ -115,13 +128,27 @@ async function main() {
                 url,
                 responseType: 'stream'
             }).then(response => {
-                const writer = fs.createWriteStream(destinationPath);
+                const totalBytes = parseInt(response.headers['content-length'], 10);
+                let progressBar = new ProgressBar(`Downloading - ${toMegabytes(totalBytes)} [:bar] :percent :etas `, {
+                    complete: '=',
+                    incomplete: ' ',
+                    width: 20,
+                    total: totalBytes
+                });
+                let downloadedBytes = 0;
+
+                const writer = fs.createWriteStream(destinationPath); // Make sure `destinationPath` is defined
+                response.data.on('data', chunk => {
+                    downloadedBytes += chunk.length;
+                    progressBar.tick(chunk.length);
+                });
                 response.data.pipe(writer);
-                writer.on('finish', () => onFinish(destinationPath));
-                writer.on('error', onError);
+
+                writer.on('finish', () => onFinish(destinationPath)); // Ensure `onFinish` is defined
+                writer.on('error', onError); // Ensure `onError` is defined
             }).catch(onError);
             async function unzipSuccess() {
-                console.log('Unzip Success!');
+                console.log('\nUnzip Success!');
 
                 // find bin path through glob pattern
                 const execPromise = new Promise(function (resolve) {
@@ -155,5 +182,9 @@ async function main() {
         }
         download(url);
     }
+}
+function toMegabytes(bytes) {
+    const mb = bytes / 1024 / 1024;
+    return `${Math.round(mb * 10) / 10} Mb`;
 }
 main();
