@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "experimental": "node experimental.js",
-    "install": "npm i 7zip-bin && node install.js",
+    "install": "npm i && npm i 7zip-bin && node install.js",
     "test": "node test/test-runner.js | tap-summary"
   },
   "keywords": [
