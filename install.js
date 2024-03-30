@@ -28,7 +28,7 @@ async function main() {
     const projectRoot = __dirname;
     const downloadRootDirectory = path.join(projectRoot, '.local-chromium-all-codecs');
     let revision = 706915;
-    let platform = require('./get-platform.js');
+    let platform = require('./get-platform');
     if (!platform) throw new Error('Unspported platform: ' + platform);
     if (platform === 'mac') {
         revision = 587811;
