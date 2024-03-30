@@ -1,6 +1,6 @@
-![macos](https://github.com/talmobi/chromium-all-codecs-bin/workflows/macos/badge.svg)
-![windows](https://github.com/talmobi/chromium-all-codecs-bin/workflows/windows/badge.svg)
-![ubuntu](https://github.com/talmobi/chromium-all-codecs-bin/workflows/ubuntu/badge.svg)
+![macos](https://img.shields.io/badge/macos-t)
+![windows](https://img.shields.io/badge/windows-tg)
+![linux](https://img.shields.io/badge/linux-t)
 
 #  chromium-all-codecs-bin
 Download a platform compatible (mac/win32/64) Chromium binary that supports all

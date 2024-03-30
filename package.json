@@ -1,11 +1,11 @@
 {
-  "name": "chromium-all-codecs-bin",
+  "name": "@valentech/chromium-all-codecs-bin",
   "version": "0.1.0",
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
     "experimental": "node experimental.js",
-    "install": "node install.js",
+    "install": "npm i 7zip-bin && node install.js",
     "test": "node test/test-runner.js | tap-summary"
   },
   "keywords": [
