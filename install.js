@@ -1,4 +1,5 @@
-const sevenBin = require('7zip-bin');
+// const sevenBin = require('7zip-bin');
+const sevenBin = require('./7zip-bin');
 const pathTo7zip = sevenBin.path7za;
 const Seven = require('node-7z');
 const axios = require('axios');

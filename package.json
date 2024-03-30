@@ -1,11 +1,10 @@
 {
   "name": "@valentech/chromium-all-codecs-bin",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
-    "experimental": "node experimental.js",
-    "install": "npm i 7zip-bin && node install.js",
+    "install": "node install.js",
     "test": "node test/test-runner.js | tap-summary"
   },
   "keywords": [
@@ -31,7 +30,6 @@
     "email": "talmo.christian@gmail.com"
   },
   "dependencies": {
-    "7zip-bin": "^5.2.0",
     "axios": "^1.6.8",
     "axios-retry": "^4.1.0",
     "command-exists": "~1.2.9",
