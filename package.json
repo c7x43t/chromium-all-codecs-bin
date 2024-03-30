@@ -4,6 +4,7 @@
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
+    "experimental": "node experimental.js",
     "install": "node install.js",
     "test": "node test/test-runner.js | tap-summary"
   },
@@ -30,10 +31,14 @@
     "email": "talmo.christian@gmail.com"
   },
   "dependencies": {
+    "7zip-bin": "^5.2.0",
+    "axios": "^1.6.8",
+    "axios-retry": "^4.1.0",
     "command-exists": "~1.2.9",
     "cross-unzip": "~0.2.1",
     "extract-zip": "~2.0.1",
     "make-dir": "~4.0.0",
+    "node-7z": "^3.0.0",
     "progress": "~2.0.3",
     "redstar": "0.0.2",
     "rimraf": "~5.0.5",
