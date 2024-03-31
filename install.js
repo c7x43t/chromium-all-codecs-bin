@@ -4,15 +4,15 @@ const path = require('path');
 const os = require('os');
 const sevenZipBinPath = path.join(__dirname, '7zip-bin');
 const sevenBin = require(sevenZipBinPath);
-const pathTo7zip = sevenBin.path7za;
+const pathTo7zip = sevenBin.getPath7za();
+// console.log('7zip path: ' + pathTo7zip, sevenBin);
 const Seven = require('node-7z');
 const axios = require('axios');
 const { default: axiosRetry } = require('axios-retry');
-const { exec } = require('child_process');
+
 
 const client = axios.create();
 const ProgressBar = require('progress');
-console.log({ axiosRetry });
 axiosRetry(client, { retries: 3 });
 const redstar = require('redstar');
 const makeDir = require('make-dir');
@@ -95,10 +95,11 @@ async function main() {
         const s = fs.statSync(execPath);
         const absExecPath = path.resolve(execPath);
 
-        console.log({ absExecPath });
+        // console.log({ absExecPath });
         fs.writeFileSync(path.join(__dirname, 'bin-path.txt'), absExecPath, 'utf8');
         // exists already, no need to download
         console.log('Chromium already exists, no need to download.');
+        console.log(absExecPath);
     } catch (err) {
         console.log('need to download');
         const url = downloadURLs[platform];
