@@ -1,6 +1,6 @@
 {
   "name": "@valentech/chromium-all-codecs-bin",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
