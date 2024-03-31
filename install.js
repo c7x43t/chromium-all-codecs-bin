@@ -1,6 +1,7 @@
 // const sevenBin = require('7zip-bin');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const sevenZipBinPath = path.join(__dirname, '7zip-bin');
 const sevenBin = require(sevenZipBinPath);
 const pathTo7zip = sevenBin.path7za;
@@ -23,12 +24,24 @@ const downloadURLs = {
     win32: "https://github.com/macchrome/winchrome/releases/download/v123.6312.56-M123.0.6312.56-r1262506-Win64/ungoogled-chromium-123.0.6312.56-1_Win64.7z",
     win64: "https://github.com/macchrome/winchrome/releases/download/v123.6312.56-M123.0.6312.56-r1262506-Win64/ungoogled-chromium-123.0.6312.56-1_Win64.7z",
 };
+function getPlatform() {
+    let platform = '';
 
+    const p = os.platform();
+
+    if (p === 'darwin') platform = 'mac';
+    else if (p === 'linux') platform = 'linux';
+    else if (p === 'win32') {
+        platform = os.arch() === 'x64' ? 'win64' : 'win32';
+    }
+    return platform;
+}
 async function main() {
     const projectRoot = __dirname;
     const downloadRootDirectory = path.join(projectRoot, '.local-chromium-all-codecs');
     let revision = 706915;
-    let platform = require('./get-platform');
+
+    let platform = getPlatform();// require('./get-platform');
     if (!platform) throw new Error('Unspported platform: ' + platform);
     if (platform === 'mac') {
         revision = 587811;
