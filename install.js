@@ -4,7 +4,7 @@ const path = require('path');
 const os = require('os');
 const sevenZipBinPath = path.join(__dirname, '7zip-bin');
 const sevenBin = require(sevenZipBinPath);
-const pathTo7zip = sevenBin.getPath7za();
+const pathTo7zip = sevenBin.path7za();
 // console.log('7zip path: ' + pathTo7zip, sevenBin);
 const Seven = require('node-7z');
 const axios = require('axios');
@@ -19,10 +19,10 @@ const makeDir = require('make-dir');
 const rimraf = require('rimraf');
 
 const downloadURLs = {
-    linux: "https://github.com/macchrome/linchrome/releases/download/v123.6312.90-M123.0.6312.90-r1262506-portable-ungoogled-Lin64/ungoogled-chromium_123.0.6312.90_1.vaapi_linux.tar.xz",
-    mac: "https://github.com/macchrome/macstable/releases/download/v122.6261.115-M122.0.6261.115-r1250580-macOS/Chromium.app.ungoogled-122.0.6261.115.tar.xz",
-    win32: "https://github.com/macchrome/winchrome/releases/download/v123.6312.56-M123.0.6312.56-r1262506-Win64/ungoogled-chromium-123.0.6312.56-1_Win64.7z",
-    win64: "https://github.com/macchrome/winchrome/releases/download/v123.6312.56-M123.0.6312.56-r1262506-Win64/ungoogled-chromium-123.0.6312.56-1_Win64.7z",
+    linux: "https://github.com/macchrome/linchrome/releases/download/v131.6778.244-M131.0.6778.244-r1368529-portable-ungoogled-Lin64/ungoogled-chromium_131.0.6778.244_1.vaapi_linux.tar.xz",
+    mac: "https://github.com/macchrome/macstable/releases/download/v131.6778.251-M131.0.6778.251-r1368529-macOS/Chromium.app.ungoogled-131.0.6778.251.tar.xz",
+    win32: "https://github.com/macchrome/winchrome/releases/download/v132.6834.97-M132.0.6834.97-r1381561-Win64/ungoogled-chromium-132.0.6834.97-1_Win64.7z",
+    win64: "https://github.com/macchrome/winchrome/releases/download/v132.6834.97-M132.0.6834.97-r1381561-Win64/ungoogled-chromium-132.0.6834.97-1_Win64.7z",
 };
 function getPlatform() {
     let platform = '';
