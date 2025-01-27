@@ -3,8 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const sevenZipBinPath = path.join(__dirname, '7zip-bin');
+
 const sevenBin = require(sevenZipBinPath);
-const pathTo7zip = sevenBin.path7za();
+const pathTo7zip = sevenBin.path7za;
 // console.log('7zip path: ' + pathTo7zip, sevenBin);
 const Seven = require('node-7z');
 const axios = require('axios');
