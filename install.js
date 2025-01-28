@@ -184,6 +184,12 @@ async function main() {
                 try {
                     const s = fs.statSync(execPath);
                     const absExecPath = path.resolve(execPath);
+                    // On Linux, ensure the Chrome executable has the correct permissions
+                    if (platform === 'linux') {
+                        console.log('Setting Chrome executable permissions...');
+                        fs.chmodSync(absExecPath, 0o755); // Set as executable
+                    }
+
                     fs.writeFileSync(path.join(__dirname, 'bin-path.txt'), absExecPath, 'utf8');
 
                     // exists already, no need to download
@@ -194,7 +200,7 @@ async function main() {
                     // rimraf.sync(zipPath);
                 } catch (err) {
                     // should exist now that we just downloaded it...
-                    throw new Error('Failed to download Chromium');
+                    throw new Error('Failed to download Chromium: ' + err.message);
                 }
             }
         }
